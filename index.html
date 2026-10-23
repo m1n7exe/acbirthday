@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
+  <title>Aye Chan's Birthday Wrapped</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./script.js" defer></script>
+</head>
+
+<body data-page="welcome">
+  <main class="wrapped">
+    <header class="top-bar">
+      <span>BIRTHDAY WRAPPED</span>
+      <span id="page-number">01 / 09</span>
+    </header>
+
+    <div
+      id="page-progress"
+      class="page-progress"
+      role="progressbar"
+      aria-label="Birthday Wrapped progress"
+      aria-valuemin="1"
+      aria-valuemax="9"
+      aria-valuenow="1"
+    >
+      <span id="page-progress-fill"></span>
+    </div>
+
+    <!-- 1: WELCOME -->
+    <section id="welcome-screen" class="screen">
+      <div class="welcome-art" aria-hidden="true">✳</div>
+      <p class="eyebrow">A WHOLE 3 MONTHS OF US</p>
+
+      <h1>
+        AYE CHAN,<br>
+        MY MA,<br>
+        happy birthday<br>
+        <em>baby.</em>
+      </h1>
+
+      <p class="description">
+        The moments. The chaos. The little things that make you, you.
+        Your birthday Wrapped is ready.
+      </p>
+
+      <button class="primary-button" data-go="stats" type="button">
+        Unwrap my year ↗
+      </button>
+
+      <p class="small-print">Made just for you. Obviously.</p>
+    </section>
+
+    <!-- 2: STATS -->
+    <section id="stats-screen" class="screen" hidden>
+      <p class="eyebrow">THE NUMBERS ARE IN</p>
+      <h2>A very scientific<br>study of <em>you.</em></h2>
+      <p class="description">Tap each card. We did the maths. Sort of.</p>
+
+      <div class="stats-grid">
+        <button
+          class="stat-card"
+          type="button"
+          aria-expanded="false"
+          aria-controls="stat-1"
+        >
+          <span class="stat-label">YOUR MOST COMMON ANNOUNCEMENT</span>
+          <span class="reveal-hint">Tap to reveal +</span>
+          <span id="stat-1" class="stat-result" hidden>
+            <strong>“So you want to break up?”</strong>
+            <span>Reported approximately 8,472 times.</span>
+          </span>
+        </button>
+
+        <button
+          class="stat-card"
+          type="button"
+          aria-expanded="false"
+          aria-controls="stat-2"
+        >
+          <span class="stat-label">YOUR PERSONALITY BREAKDOWN</span>
+          <span class="reveal-hint">Tap to reveal +</span>
+          <span id="stat-2" class="stat-result" hidden>
+            <strong>20% sweet.<br>80% chaos. <br> 100% you</strong>
+            <span>A dangerously good combination.</span>
+          </span>
+        </button>
+
+        <button
+          class="stat-card"
+          type="button"
+          aria-expanded="false"
+          aria-controls="stat-3"
+        >
+          <span class="stat-label">TIMES YOU MADE ME CRASH OUT BUT I STILL LOVE YOU</span>
+          <span class="reveal-hint">Tap to reveal +</span>
+          <span id="stat-3" class="stat-result" hidden>
+            <strong>Lost count.</strong>
+            <span>The spreadsheet couldn’t handle it.</span>
+          </span>
+        </button>
+      </div>
+
+      <p id="stats-progress" class="small-print" aria-live="polite">
+        0 of 3 discoveries unlocked
+      </p>
+
+      <button
+        id="stats-next"
+        class="primary-button"
+        data-go="drama"
+        type="button"
+        hidden
+      >
+        Our dramatic era →
+      </button>
+
+      <button class="back-button" data-go="welcome" type="button">
+        ← Back
+      </button>
+    </section>
+
+    <!-- 3: DRAMA -->
+    <section id="drama-screen" class="screen" hidden>
+      <p class="eyebrow">EVERY GOOD STORY HAS PLOT TWISTS</p>
+      <h2>Our dramatic<br><em>era.</em></h2>
+      <p class="description">Tap the card. The truth is on the other side.</p>
+
+      <p id="drama-counter" class="small-print" aria-live="polite"></p>
+
+      <button
+        id="drama-flip-card"
+        class="flip-card"
+        type="button"
+        aria-expanded="false"
+        aria-label="Tap to reveal the answer"
+      >
+        <span class="flip-card-inner">
+          <span class="flip-face flip-front" aria-hidden="false">
+            <span class="flip-symbol" aria-hidden="true">✳</span>
+            <span id="drama-question" class="flip-question"></span>
+            <span class="flip-hint">Tap to flip ↻</span>
+          </span>
+
+          <span class="flip-face flip-back" aria-hidden="true">
+            <strong id="drama-answer" class="flip-answer"></strong>
+            <span id="drama-caption" class="flip-caption"></span>
+            <span class="flip-hint">Tap to flip back ↻</span>
+          </span>
+        </span>
+      </button>
+
+      <button id="drama-next-card" class="primary-button" type="button" hidden>
+        Next card →
+      </button>
+
+      <div id="drama-complete" hidden>
+        <p class="completion-message">
+          Here’s to more listening, softer words,
+          and more happy memories together. 💜
+        </p>
+        <button class="primary-button" data-go="memories" type="button">
+          The moments I love →
+        </button>
+      </div>
+
+      <button class="back-button" data-go="stats" type="button">
+        ← Back
+      </button>
+    </section>
+
+   <!-- 4: MEMORIES -->
+<section id="memories-screen" class="screen" hidden>
+  <p class="eyebrow">MY CAMERA ROLL’S FAVOURITE PERSON</p>
+  <h2>Small moments.<br><em>Big feelings.</em></h2>
+
+  <p class="description">
+    Swipe through our memories. Tap one to find out why I kept it.
+  </p>
+
+  <div class="memory-carousel">
+    <div
+      id="memory-list"
+      class="memory-list"
+      role="region"
+      aria-label="Our memories"
+      tabindex="0"
+    ></div>
+
+    <div class="memory-carousel-controls">
+      <button
+        class="back-button"
+        type="button"
+        id="memory-prev"
+        aria-label="Previous memory"
+      >
+        ← Previous
+      </button>
+
+      <button
+        class="back-button"
+        type="button"
+        id="memory-next"
+        aria-label="Next memory"
+      >
+        Next →
+      </button>
+    </div>
+  </div>
+
+  <button class="primary-button" data-go="quiz" type="button">
+    Remember this? →
+  </button>
+
+</section>
+
+    <!-- 5: QUIZ -->
+    <section id="quiz-screen" class="screen" hidden>
+      <p class="eyebrow">A LITTLE TEST OF US</p>
+      <h2>How well do<br><em>you remember?</em></h2>
+      <p class="description">
+        A few questions about the little things that make us, us.
+      </p>
+
+      <div id="quiz-panel" class="panel">
+        <p id="quiz-counter" class="eyebrow"></p>
+        <h3 id="quiz-question"></h3>
+        <div id="quiz-options" class="quiz-options"></div>
+        <p id="quiz-feedback" class="feedback" role="status"></p>
+        <button id="quiz-next" class="primary-button" type="button" hidden>
+          Next question →
+        </button>
+      </div>
+
+      <div id="quiz-result" class="panel" hidden>
+        <p class="eyebrow">QUIZ COMPLETE</p>
+        <h3 id="quiz-score"></h3>
+        <p class="description">
+          The best part of our story is getting to keep making memories.
+        </p>
+        <button class="primary-button" data-go="music" type="button">
+          Our songs →
+        </button>
+      </div>
+
+      <button class="back-button" data-go="memories" type="button">
+        ← Back
+      </button>
+    </section>
+
+    <!-- 6: MUSIC -->
+    <section id="music-screen" class="screen" hidden>
+      <p class="eyebrow">IF MY FEELINGS HAD A PLAYLIST</p>
+      <h2>10 songs.<br>All <em>you.</em></h2>
+      <p class="description">
+        From #10 to #1. Every song has a little reason.
+      </p>
+
+      <div class="panel now-playing">
+        <span class="record-icon" aria-hidden="true">♫</span>
+        <p class="eyebrow">SELECTED SONG</p>
+        <h3 id="song-title"></h3>
+        <p id="song-artist" class="small-print"></p>
+        <p id="song-reason" class="song-reason"></p>
+
+        <audio id="music-player" controls preload="none">
+          Your browser does not support audio playback.
+        </audio>
+
+        <p id="music-status" class="small-print" role="status"></p>
+
+        <div class="player-buttons">
+          <button id="previous-song" class="outline-button" type="button">
+            ← Previous
+          </button>
+          <button id="next-song" class="outline-button" type="button">
+            Next →
+          </button>
+        </div>
+      </div>
+
+      <div id="song-list" class="song-list" aria-label="Our playlist"></div>
+
+      <button class="primary-button" data-go="future" type="button">
+        Your next era →
+      </button>
+
+      <button class="back-button" data-go="quiz" type="button">
+        ← Back
+      </button>
+    </section>
+
+<!-- 7: FUTURE -->
+<section id="future-screen" class="screen" hidden>
+  <p class="eyebrow">COMING SOON: OUR LITTLE UK ADVENTURE</p>
+  <h2>Seven days.<br>With <em>you.</em></h2>
+
+  <p class="description">
+    London, a little magic, Christmas together, and our own Oxford
+    love story. These are the places I want to explore with you.
+  </p>
+
+  <div class="london-timeline">
+<article class="london-day">
+  <span class="london-day-number">01</span>
+  <div class="london-day-content">
+    <p class="eyebrow">DAY ONE · FINALLY, YOU</p>
+    <h3>A hug, a little London, and a secret mission</h3>
+    <ul>
+      <li>Finally see you and give you the hug I’ve been saving.</li>
+      <li>Drop off my bags and get something good to eat.</li>
+      <li>Head to Vauxhall Bridge to see the MI6 building from outside.</li>
+      <li>Get you to take a photo of me pretending I’m James Bond.</li>
+      <li>See Big Ben and Westminster Bridge, then walk along the South Bank.</li>
+      <li>Find somewhere cosy for dinner before getting some rest.</li>
+    </ul>
+    <p class="london-day-note">
+      My first mission: get a hug from you.
+      My second: I am literally James Bond.
+  </div>
+</article>
+
+    <article class="london-day">
+      <span class="london-day-number">02</span>
+      <div class="london-day-content">
+        <p class="eyebrow">DAY TWO · A LITTLE HOGWARTS MAGIC</p>
+        <h3>You, me, and the wizarding world</h3>
+        <ul>
+          <li>Head to Warner Bros. Studio Tour for our Harry Potter day.</li>
+          <li>Explore the Great Hall and imagine getting our Hogwarts letters.</li>
+          <li>Walk through Diagon Alley and choose our favourite shopfront.</li>
+          <li>Take photos at Platform 9¾ and see the Hogwarts Express.</li>
+          <li>Try Butterbeer and decide whether it lives up to the hype.</li>
+          <li>Pick a little souvenir before heading back for dinner.</li>
+        </ul>
+        <p class="london-day-note">
+          A whole day for this. I already know we’re taking too many photos.
+        </p>
+      </div>
+    </article>
+
+    <article class="london-day">
+      <span class="london-day-number">03</span>
+      <div class="london-day-content">
+        <p class="eyebrow">DAY THREE · CHRISTMAS EVE IN LONDON</p>
+        <h3>Christmas lights and stolen kisses</h3>
+        <ul>
+          <li>Explore Covent Garden and take Christmas photos together.</li>
+          <li>Walk through Seven Dials and find Neal’s Yard.</li>
+          <li>Head towards Carnaby Street and Regent Street for the lights.</li>
+          <li>Stop for something warm and pick a small treat for each other.</li>
+          <li>Get our Christmas food sorted before heading back early.</li>
+        </ul>
+        <p class="london-day-note">
+          Holding your hand through London at Christmas sounds like
+          something I’ve been waiting a long time to do.
+        </p>
+      </div>
+    </article>
+
+    <article class="london-day">
+      <span class="london-day-number">04</span>
+      <div class="london-day-content">
+        <p class="eyebrow">DAY FOUR · CHRISTMAS DAY</p>
+        <h3>My Christmas wish is you</h3>
+        <ul>
+          <li>Wake up slowly and make breakfast together.</li>
+          <li>Exchange presents and take our Christmas photo.</li>
+          <li>Cook Christmas lunch with our favourite music playing.</li>
+          <li>Wrap up warm for a little walk near where we’re staying.</li>
+          <li>Spend the evening under a blanket watching Christmas films.</li>
+        </ul>
+        <p class="london-day-note">
+          No rushing anywhere. I want to enjoy spending Christmas with you.
+        </p>
+      </div>
+    </article>
+
+    <article class="london-day">
+      <span class="london-day-number">05</span>
+      <div class="london-day-content">
+        <p class="eyebrow">DAY FIVE · BOXING DAY EXPLORING</p>
+        <h3>Royal views and pretty streets</h3>
+        <ul>
+          <li>Start with breakfast before a walk through St James’s Park.</li>
+          <li>See Buckingham Palace and take our very touristy photos.</li>
+          <li>Head to Notting Hill to wander past the colourful houses.</li>
+          <li>Walk along Portobello Road and stop for photos.</li>
+          <li>Find dinner somewhere open, or head back for a cosy meal.</li>
+        </ul>
+        <p class="london-day-note">
+          A day for exploring outside, with plenty of excuses to stop
+          and warm up together.
+        </p>
+      </div>
+    </article>
+
+    <article class="london-day">
+      <span class="london-day-number">06</span>
+      <div class="london-day-content">
+        <p class="eyebrow">DAY SIX · OUR OWN OXFORD STORY</p>
+        <h3>Pretending we’re in My Oxford Year</h3>
+        <ul>
+          <li>Take an early trip to Oxford and pretend we belong there.</li>
+          <li>Walk through Radcliffe Square and take photos by the Radcliffe Camera.</li>
+          <li>Explore the streets around the Bodleian Library.</li>
+          <li>Find the Bridge of Sighs for another photo together.</li>
+          <li>Visit Christ Church if it’s open and we can get tickets.</li>
+          <li>Find a cosy café and discuss our very imaginary Oxford student lives.</li>
+          <li>Head back to London and pack for Devon.</li>
+        </ul>
+        <p class="london-day-note">
+          We can pretend we’re in the movie. I’d quite like a whole
+          Oxford chapter with you.
+        </p>
+      </div>
+    </article>
+
+    <article class="london-day">
+      <span class="london-day-number">07</span>
+      <div class="london-day-content">
+        <p class="eyebrow">DAY SEVEN · BACK TO DEVON</p>
+        <h3>Our adventure comes with us</h3>
+        <ul>
+          <li>Have breakfast and check that we’ve packed everything.</li>
+          <li>Get snacks ready for the journey back to Devon.</li>
+          <li>Listen to our playlist and look through our photos.</li>
+          <li>Choose our favourite memory from the week.</li>
+          <li>Get settled in Devon and spend a quiet evening together.</li>
+        </ul>
+        <p class="london-day-note">
+          Leaving London, but I still get to be with you.
+        </p>
+      </div>
+    </article>
+  </div>
+
+  <p class="description">
+    We don’t have to do everything. These are just a few things
+    I’m excited to share with you.
+  </p>
+
+  <button class="primary-button" data-go="finale" type="button">
+    One last birthday surprise →
+  </button>
+
+  <button class="back-button" data-go="music" type="button">
+    ← Back
+  </button>
+</section>
+
+<!-- 8: FINALE -->
+<section id="finale-screen" class="screen" hidden>
+  <p class="eyebrow">THIS PART IS JUST FOR YOU</p>
+  <h2>Make a wish,<br><em>my ma.</em></h2>
+
+  <p id="wish-instruction" class="description">
+    Think of something lovely. Then tap the cake to blow out the candles.
+  </p>
+
+  <button
+    id="cake-button"
+    class="cake-button"
+    type="button"
+    aria-label="Blow out the birthday candles"
+  >
+    <span id="candle-flames" class="candle-flames" aria-hidden="true">
+      🔥 🔥 🔥
+    </span>
+    <span class="cake-emoji" aria-hidden="true">🎂</span>
+    <span id="cake-label" class="small-print">Tap to make a wish</span>
+  </button>
+
+  <button id="letter-link" class="primary-button" data-go="letter" type="button" hidden>
+    Read your letter →
+  </button>
+
+  <button class="back-button" data-go="future" type="button">
+    ← Back
+  </button>
+</section>
+
+<!-- 9: LETTER -->
+<section id="letter-screen" class="screen" hidden>
+  <p class="eyebrow">A LITTLE SOMETHING FOR YOU</p>
+  <h2>A letter,<br><em>from my heart.</em></h2>
+  <p class="description">
+    Take your time reading this. I wrote every word for you.
+  </p>
+
+  <div class="letter-viewer">
+    <iframe
+      src="./documents/letter.pdf"
+      title="A birthday letter for you"
+      loading="lazy"
+    ></iframe>
+  </div>
+
+  <p class="letter-viewer-actions">
+    If the letter doesn’t appear above,
+    <a href="./documents/letter.pdf" target="_blank" rel="noopener">
+      open it in a new tab
+    </a>
+    or
+    <a href="./documents/letter.pdf" download>
+      download the PDF
+    </a>.
+  </p>
+
+  <button class="back-button" data-go="finale" type="button">
+    ← Back to your birthday
+  </button>
+</section>
+
+<div id="confetti" class="confetti" aria-hidden="true"></div>
+</body>
+</html>
